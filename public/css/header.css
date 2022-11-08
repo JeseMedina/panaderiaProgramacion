@@ -1,0 +1,148 @@
+:root{
+    --dark-green: #063940;
+    --light-green: #8ebdb6;
+    --moss: #3e838c;
+    --dark-moss: #195e63;
+    --cream: #f7ebe8;
+}
+
+body{
+    background-color: var(--dark-green);
+}
+
+.main-header .logo {
+    padding: 7px 15px;
+}
+
+.main-header .logo .logo-lg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ARMECA */
+b, strong{
+    font-size: 1.5em;
+}
+
+/* Usuario */
+.hidden-xs{
+    font-size: 1.3em;
+}
+
+.skin-blue-light .main-header li.user-header {
+    background-color: var(--dark-moss);
+}
+
+/* Usuario */
+.navbar-custom-menu{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.skin-blue-light .main-header .navbar .nav>li>a:hover{
+    background: var(--moss);
+    color: var(--dark-green);
+    padding: 15px 9px 15px;
+    text-shadow: -1px 1px 2px white;
+    font-weight: bold;
+}
+
+.skin-blue-light .main-header .navbar .nav>li>a:active, 
+.skin-blue-light .main-header .navbar .nav>li>a:focus,  
+.skin-blue-light .main-header .navbar .nav>.active>a {
+    background: none;
+    color: var(--cream);
+    padding: 15px 9px 15px;
+    text-shadow: none;
+    font-weight: none;
+}
+
+.skin-blue-light .main-header .navbar .nav .open>a,  
+.skin-blue-light .main-header .navbar .nav .open>a:focus{
+    background: var(--moss);
+    color: var(--cream); 
+}
+
+.skin-blue-light .main-header .navbar .nav .open>a:hover{
+    background: var(--moss);
+    color: var(--dark-green);
+    padding: 21px 20px 21px;
+    text-shadow: -1px 1px 2px white;
+    font-weight: bold;
+}
+
+/* Btn cerrar sesión */
+.navbar-nav>.user-menu>.dropdown-menu>.user-footer {
+    background-color: var(--dark-green);
+}
+
+.navbar-nav>.user-menu>.dropdown-menu>.user-footer .btn-default {
+    color: var(--cream);
+    background-color: var(--moss);
+    border-color: var(--moss);
+}
+
+.navbar-nav>.user-menu>.dropdown-menu>.user-footer .btn-default:hover{
+    color: var(--moss);
+    background-color: var(--dark-green);
+    border-color: var(--moss);
+    font-weight: bold;
+}
+.skin-blue-light .main-header .logo{
+    background-color: var(--dark-green);
+    color: var(--cream);
+    font-size: 1.8em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.logo-img{
+    transform: rotate(19deg);
+    width: 23px;
+    margin-right: 6px;
+}
+
+.skin-blue-light .main-header .logo:hover{
+    background-color: var(--dark-green);
+    color: var(--light-green);
+}
+
+.skin-blue-light .main-header .navbar{
+    display: flex;
+    align-items: center;
+    background-color: var(--dark-green);
+}
+
+.skin-blue-light .main-header .navbar{
+    background-color: var(--dark-green);
+}
+
+.skin-blue-light .main-header .navbar .sidebar-toggle{
+    color: var(--cream);
+    font-size: 1.7em;
+}
+
+.skin-blue-light .main-header .navbar .sidebar-toggle:hover {
+    background-color: var(--dark-moss);
+}
+
+.skin-blue-light .main-header .navbar .nav>li>a {
+    color: var(--cream);
+}
+
+.skin-blue-light .sidebar-menu>li>a {
+    font-size: 1.1em;
+}
+
+#pdf{
+    background-color: #ff0000;
+}
+
+#mantovani{
+    background-color: #f39c12;
+}

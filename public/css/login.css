@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols:wght@100&display=swap');
+
+:root{
+    --dark-green: #063940;
+    --light-green: #8ebdb6;
+    --dark-brown: #592202;
+    --light-brown: #D9A86C;
+    --orange: #F94D01;
+    --gray: #E6E5E1;
+    --black: #080c08;
+}
+
+.img { 
+    height: 100vh;
+    width: 100%;
+    background-image: url("../img/pan.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.img::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgb(239 217 192 / 40%);
+}
+
+/* Estilos para la medialuna */
+.medialuna{
+    height: 75px;
+    margin-top: 22px;
+}
+/* Estilos para el ARMECA */
+h1{
+    color: var(--gray);
+    font-weight: 700;
+    font-size: 1.6em;
+    letter-spacing: 15px;
+    padding: 0;
+    text-shadow: 1px 2px 2px var(--dark-brown);
+    font-family: 'Noto Sans Symbols', sans-serif;
+    margin-top: 14px;
+    margin-bottom: 33px;
+}
+
+/* Login*/
+.login-box, .register-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0%;
+    background: var(--dark-green);
+    border-radius: 22px;
+    border: 3px solid var(--light-green);
+    box-shadow: -3px 4px 7px;
+    width: 481px;
+    height: 453px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.login-page, .register-page {
+    background: var(--gray);
+}
+.login-logo, .register-logo{
+    margin-bottom: -4px;
+}
+.login-logo a, .register-logo a {
+    color: var(--gray);
+}
+.login-box-body, .register-box-body {
+    background: var(--dark-moss);
+    font-size: 1.2em;
+    height: 285px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-top: 0;
+}
+.login-box-msg, .register-box-msg {
+    color: var(--light-green);
+    padding: 0 20px 0px 20px;
+    text-shadow: 1px 2px 3px var(--black);
+}
+.has-feedback {
+    background-color: var(--dark-green);
+}
+.has-feedback .form-control {
+    -webkit-text-fill-color: var(--dark-green);
+    /* color: var(--black) !important; */
+    font-size: 1.1em;
+    border-radius: 5px;
+}
+/* lo del webkit fiero */
+input:-internal-autofill-selected {
+    background-color: var(--dark-green) !important;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 17px var(--gray) inset !important;
+}
+/* acá termina */
+.has-feedback .form-control:hover {
+    border-color: var(--light-green);
+}
+
+/* Para manejar el formulario completo y no de a uno */
+.form-group {
+    margin-bottom: 30px;
+}
+.row{
+    display: flex;
+}
+
+.col-xs-8{
+    display: flex;
+    align-items: center;
+}
+.btn-primary {
+    background-color: var(--light-green);
+    color: var(--black);
+    border-color: var(--dark-green);
+    font-size: 0.9em;
+}
+.btn-primary:hover {
+    color: var(--black);
+    background-color: var(--gray);
+    border-color: var(--light-brown);
+    font-weight: bold;
+}
+.btn-primary:active{
+    background-color: var(--gray) !important;
+    border-color: 0px !important;
+    border-radius: 0px !important;
+    color: var(--black) !important;
+    font-weight: bold !important;
+}
+.btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: var(--dark-green);
+    background-color: var(--light-green);
+    border-color: var(--light-green);
+    font-weight: bold;
+}
+.btn.btn-flat {
+    border-width: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.btn-primary:focus {
+    color: var(--black);
+    background-color: var(--gray);
+    border-color: var(--dark-green);
+}
+a {
+    color: var(--gray);
+}
+a:hover {
+    color: var(--light-green);
+}
+a:active{
+    color: var(--black);
+}
+a:focus {
+    color: var(--black);
+}
