@@ -259,8 +259,11 @@ function agregarDetalle(idproducto,producto,precio_venta,uMedida)
         var inpP=prec[i];
         var inpD=desc[i];
         var inpS=sub[i];
+        var total = inpC.value * inpP.value
+        var descuento = inpD.value * total / 100;
  
-        inpS.value=(inpC.value * inpP.value)-inpD.value;
+        // inpS.value=total - inpD.value;
+        inpS.value= parseInt(total - descuento);
         document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
     }
     calcularTotales();
