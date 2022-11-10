@@ -3,10 +3,10 @@ x-Sacar stock de producto. Dejarlo en editar y que el stock se cargue en compra
 -Actualizar precio de producto
 -Trigger insertar en detalle_compra con precio de venta a producto???????
 x-Compra: sacar impuestos y serie. Comprobante A y B y negro. Numero no requerido
--Venta: sacar la segunda fila, descuento por porcentaje, venta con tarjeta o contado
+x-Venta: sacar la segunda fila, descuento por porcentaje, venta con tarjeta o contado
 -scrollear la la pantalla del fondo en el modal
 -Cambiar producto por select autocompletable
--Caja: compra no tiene que ir conectado
+x-Caja: compra no tiene que ir conectado
 
 Ingenieria:
 -no vender si el stock es insuficiente.

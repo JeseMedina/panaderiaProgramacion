@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2022 a las 00:30:39
+-- Tiempo de generación: 10-11-2022 a las 14:20:47
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `panaderia`
+-- Base de datos: `panaderiaprogramacion`
 --
 
 -- --------------------------------------------------------
@@ -46,7 +46,8 @@ INSERT INTO `caja` (`idcaja`, `fecha_hora`, `inicio`, `ingreso`, `egreso`, `tota
 (14, '2022-10-22', '800.00', '0.00', '0.00', '0.00', 'Cerrada'),
 (15, '2022-10-23', '600.00', '700.00', '200.00', '500.00', 'Cerrada'),
 (16, '2022-10-24', '1000.00', '1800.00', '2201.50', '-401.50', 'Cerrada'),
-(17, '2022-10-27', '1000.00', '0.00', '0.00', '0.00', 'Abierta');
+(17, '2022-10-27', '1000.00', '228.00', '0.00', '228.00', 'Cerrada'),
+(18, '2022-11-10', '1000.00', '222.00', '0.00', '222.00', 'Abierta');
 
 -- --------------------------------------------------------
 
@@ -105,26 +106,8 @@ CREATE TABLE `compra` (
 INSERT INTO `compra` (`idcompra`, `idproveedor`, `idusuario`, `tipo_comprobante`, `serie_comprobante`, `num_comprobante`, `fecha_hora`, `impuesto`, `total_compra`, `estado`) VALUES
 (20, 26, 1, 'Boleta', '', '78', '2022-10-24 00:00:00', '0.00', '1.50', 'Aceptado'),
 (21, 27, 1, 'Boleta', '', '123', '2022-10-27 00:00:00', '0.00', '2200.00', 'Aceptado'),
-(22, 28, 1, 'Boleta', '', '89654', '2022-10-27 00:00:00', '0.00', '8800.00', 'Anulado');
-
---
--- Disparadores `compra`
---
-DELIMITER $$
-CREATE TRIGGER `tr_desCajaCompra` AFTER UPDATE ON `compra` FOR EACH ROW BEGIN
- UPDATE caja SET egreso = egreso - NEW.total_compra,total = total + NEW.total_compra
- WHERE caja.estado = "Abierta";
- UPDATE detalle_compra SET precio_compra=0,precio_venta=0 WHERE detalle_compra.idcompra = NEW.idcompra;
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `tr_updCajaCompra` AFTER INSERT ON `compra` FOR EACH ROW BEGIN
- UPDATE caja SET egreso = egreso + NEW.total_compra,total = total - NEW.total_compra
- WHERE caja.estado = "Abierta";
-END
-$$
-DELIMITER ;
+(22, 28, 1, 'Boleta', '', '89654', '2022-10-27 00:00:00', '0.00', '8800.00', 'Anulado'),
+(23, 25, 1, 'N', '', '', '2022-11-10 00:00:00', '0.00', '150000.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -149,7 +132,11 @@ INSERT INTO `detalle_compra` (`iddetalle_compra`, `idcompra`, `idproducto`, `can
 (16, 20, 22, '1.50', '1.00', '1.00'),
 (17, 21, 52, '100.00', '10.00', '15.00'),
 (18, 21, 53, '20.00', '60.00', '78.00'),
-(19, 22, 29, '55.00', '0.00', '0.00');
+(19, 22, 29, '55.00', '0.00', '0.00'),
+(20, 23, 13, '20.00', '1000.00', '1200.00'),
+(21, 23, 16, '10.00', '1000.00', '1200.00'),
+(22, 23, 30, '20.00', '1000.00', '1200.00'),
+(23, 23, 34, '100.00', '1000.00', '1200.00');
 
 --
 -- Disparadores `detalle_compra`
@@ -256,7 +243,13 @@ CREATE TABLE `detalle_venta` (
 INSERT INTO `detalle_venta` (`iddetalle_venta`, `idventa`, `idproducto`, `cantidad`, `precio_venta`, `descuento`) VALUES
 (46, 38, 22, '2.00', '800.00', '0.00'),
 (47, 39, 27, '1.50', '400.00', '0.00'),
-(48, 40, 26, '18.00', '0.00', '0.00');
+(48, 40, 26, '18.00', '0.00', '0.00'),
+(49, 41, 57, '1.00', '0.00', '0.00'),
+(50, 41, 54, '1.00', '0.00', '0.00'),
+(51, 42, 53, '2.00', '78.00', '5.00'),
+(52, 42, 12, '1.00', '80.00', '0.00'),
+(53, 43, 12, '2.00', '80.00', '10.00'),
+(54, 43, 53, '1.00', '78.00', '0.00');
 
 --
 -- Disparadores `detalle_venta`
@@ -399,11 +392,11 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`idproducto`, `idrubro`, `codigo`, `nombre`, `stock`, `uMedida`, `condicion`) VALUES
 (11, 33, '', 'Pan Comun', '86.00', 'Kilogramo', 1),
-(12, 33, '', 'Pan de leche', '56.50', 'Docena', 1),
-(13, 37, '', 'Levadura', '277.20', 'Unidad', 1),
+(12, 33, '', 'Pan de leche', '53.50', 'Docena', 1),
+(13, 37, '', 'Levadura', '297.20', 'Unidad', 1),
 (14, 33, 'anizado', 'Anizado', '20.00', 'Kilogramo', 1),
 (15, 33, 'prepizza', 'Prepizza', '100.00', 'Unidad', 1),
-(16, 37, '', 'Harina', '57.00', 'Unidad', 1),
+(16, 37, '', 'Harina', '67.00', 'Unidad', 1),
 (17, 33, 'Hamburguesa', 'Pan de Hamburguesa', '30.00', 'Docena', 1),
 (18, 33, 'Empanadas', 'Tapa de Empanada', '30.00', 'Unidad', 1),
 (19, 33, 'Pascualina', 'Pascualina', '28.50', 'Unidad', 1),
@@ -417,11 +410,11 @@ INSERT INTO `producto` (`idproducto`, `idrubro`, `codigo`, `nombre`, `stock`, `u
 (27, 36, 'Pastafrola', 'Pastafrola', '16.00', 'Kilogramo', 1),
 (28, 36, 'Manaos3l', 'Gaseosas Manaos 3L', '87.00', 'Unidad', 1),
 (29, 34, 'Cabalgata3l', 'Gaseosa Cabalgata 3L', '45.00', 'Unidad', 1),
-(30, 34, 'Toro3/4', 'Vino Toro 3/4', '28.00', 'Unidad', 1),
+(30, 34, 'Toro3/4', 'Vino Toro 3/4', '48.00', 'Unidad', 1),
 (31, 34, 'Soda2l', 'Soda Tubito 2L', '45.00', 'Unidad', 1),
 (32, 34, 'Soda1l', 'Soda Tubito 1L', '25.00', 'Unidad', 1),
 (33, 34, 'Puré', 'Puré de Tomate Huerta', '60.00', 'Unidad', 1),
-(34, 34, 'Brahama', 'Cerveza Brahama', '60.00', 'Litro', 1),
+(34, 34, 'Brahama', 'Cerveza Brahama', '160.00', 'Litro', 1),
 (35, 34, 'Quilmes', 'Cerveza Quilmes', '60.00', 'Litro', 1),
 (36, 34, 'Brahama Lata', 'Cerveza Brahama Lata', '90.00', 'Unidad', 1),
 (37, 34, 'Quilmes Lata', 'Cerveza Quilmes Lata', '90.00', 'Unidad', 1),
@@ -440,11 +433,11 @@ INSERT INTO `producto` (`idproducto`, `idrubro`, `codigo`, `nombre`, `stock`, `u
 (50, 34, 'Magistral', 'Detergente Magistral', '20.00', 'Unidad', 1),
 (51, 34, '', 'Esponja', '30.00', 'Unidad', 1),
 (52, 34, '', 'Caramelos', '500.00', 'Unidad', 1),
-(53, 34, 'Alfajor', 'Alfajores Tatín', '80.00', 'Unidad', 1),
-(54, 34, 'Milka', 'Alfajor Milka', '30.00', 'Unidad', 1),
+(53, 34, 'Alfajor', 'Alfajores Tatín', '77.00', 'Unidad', 1),
+(54, 34, 'Milka', 'Alfajor Milka', '29.00', 'Unidad', 1),
 (55, 34, '', 'Jugo Baggio 1L', '30.00', 'Unidad', 1),
 (56, 34, '', 'Jugo Baggio Chico', '30.00', 'Unidad', 1),
-(57, 34, '', 'Agua Saborizada VIda', '60.00', 'Unidad', 1),
+(57, 34, '', 'Agua Saborizada VIda', '59.00', 'Unidad', 1),
 (58, 34, '', 'Papel Higiénico', '60.00', 'Unidad', 1),
 (59, 33, '', 'Levadura Calsa', '0.00', 'Unidad', 1);
 
@@ -591,7 +584,10 @@ CREATE TABLE `venta` (
 INSERT INTO `venta` (`idventa`, `idcliente`, `idusuario`, `tipo_comprobante`, `serie_comprobante`, `num_comprobante`, `fecha_hora`, `impuesto`, `total_venta`, `estado`) VALUES
 (38, 21, 1, 'Boleta', '', '999', '2022-10-24 00:00:00', '0.00', '1200.00', 'Aceptado'),
 (39, 21, 1, 'Boleta', '', '7899', '2022-10-24 00:00:00', '0.00', '600.00', 'Anulado'),
-(40, 21, 1, 'Boleta', '', '23756', '2022-10-27 00:00:00', '0.00', '5400.00', 'Anulado');
+(40, 21, 1, 'Boleta', '', '23756', '2022-10-27 00:00:00', '0.00', '5400.00', 'Anulado'),
+(41, 21, 1, 'Contado', '', '', '2022-11-10 00:00:00', '0.00', '0.00', 'Aceptado'),
+(42, 21, 1, 'Contado', '', '', '2022-11-10 00:00:00', '0.00', '228.00', 'Aceptado'),
+(43, 21, 1, 'Contado', '', '', '2022-11-10 00:00:00', '0.00', '222.00', 'Aceptado');
 
 --
 -- Disparadores `venta`
@@ -743,7 +739,7 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `caja`
 --
 ALTER TABLE `caja`
-  MODIFY `idcaja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idcaja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `caja_retiro`
@@ -755,13 +751,13 @@ ALTER TABLE `caja_retiro`
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `idcompra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `idcompra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
-  MODIFY `iddetalle_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `iddetalle_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_produccion`
@@ -779,7 +775,7 @@ ALTER TABLE `detalle_reparto`
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de la tabla `permiso`
@@ -833,7 +829,7 @@ ALTER TABLE `usuario_permiso`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- Restricciones para tablas volcadas
