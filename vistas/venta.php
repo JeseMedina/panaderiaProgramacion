@@ -92,7 +92,6 @@ if ($_SESSION['ventas']==1)
                                     class="form-control selectpicker"
                                     data-live-search="true"
                                     required>
-
                                 </select>
                             </div>
                             <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -105,8 +104,8 @@ if ($_SESSION['ventas']==1)
                             </div>
                             <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <label>Tipo de Pago(*):</label>
-                                <select name="tipo_comprobante"
-                                    id="tipo_comprobante"
+                                <select name="tipo_pago"
+                                    id="tipo_pago"
                                     class="form-control selectpicker"
                                     required="">
                                     <option value="Contado">Contado</option>
@@ -150,6 +149,15 @@ if ($_SESSION['ventas']==1)
                                     </button>
                                 </a>
                             </div>
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Producto</label>
+                            <select id="idselectproducto"
+                                    name="idselectproducto"
+                                    class="form-control selectpicker"
+                                    data-live-search="true"
+                                    required>
+                                </select>
+                            </div>
 
                             <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                                 <table id="detalles"
@@ -182,7 +190,7 @@ if ($_SESSION['ventas']==1)
                                 </table>
                             </div>
 
-                            <div class="form-group botones col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group botones col-lg-12 col-md-12 col-sm-12 col-xs-12" id="btnG">
                                 <button data-toggle="tooltip"
                                     title="Guardar Venta"
                                     data-placement="bottom"
