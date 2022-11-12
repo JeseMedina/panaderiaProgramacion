@@ -137,16 +137,5 @@ switch ($_GET["op"]){
             "aaData"=>$data);
         echo json_encode($results);
     break;
-
-    case 'selectProductosVenta':
-        require_once "../modelos/Producto.php";
-        $producto=new Producto();
- 
-        $rspta=$producto->listarActivosVenta();
- 
-        while ($reg=$rspta->fetch_object()){
-            echo '<option onclick="agregarDetalle('.$reg->idproducto.',\''.$reg->nombre.'\',\''.$reg->precio_venta.'\',\''.$reg->uMedida.'\')" value=' . $reg->idproducto . '>' . $reg->nombre . '</option>';
-        }
-    break;
 }
 ?>

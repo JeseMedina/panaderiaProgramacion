@@ -1,16 +1,15 @@
-Programacion: 25 DE NOVIEMBRE
-x-Sacar stock de producto. Dejarlo en editar y que el stock se cargue en compra
+Programacion e Interfaz: 25 DE NOVIEMBRE
+x-Producto: sacar stock de producto. Dejarlo en editar y que el stock se cargue en compra
 x-Compra: sacar impuestos y serie. Comprobante A y B y negro. Numero no requerido
 x-Venta: sacar la segunda fila, descuento por porcentaje, venta con tarjeta o contado
+x-venta: no vender si el stock es insuficiente.
 x-Caja: compra no tiene que ir conectado
 x-caja: si venta es con tarjeta no agregar a caja
-x-no vender si el stock es insuficiente.
-
+x-Compra,Venta,Reparto y Produccion:scrollear la la pantalla del fondo en el modal
 -Actualizar precio de producto
 -Trigger insertar en detalle_compra con precio de venta a producto???????
 
--scrollear la la pantalla del fondo en el modal
--Cambiar producto por select autocompletable
+
 
 -Si se quiere abrir una caja y ya existe una con la misma fecha, la vuelva a abrir
 -Si caja está abierta que no se pueda cerrar la pestaña

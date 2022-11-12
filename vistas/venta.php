@@ -149,15 +149,6 @@ if ($_SESSION['ventas']==1)
                                     </button>
                                 </a>
                             </div>
-                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Producto</label>
-                            <select id="idselectproducto"
-                                    name="idselectproducto"
-                                    class="form-control selectpicker"
-                                    data-live-search="true"
-                                    required>
-                                </select>
-                            </div>
 
                             <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                                 <table id="detalles"

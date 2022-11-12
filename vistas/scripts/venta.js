@@ -14,11 +14,6 @@ function init() {
         $("#idcliente").html(r);
         $('#idcliente').selectpicker('refresh');
     });
-
-    $.post("../controlador/venta.php?op=selectProductosVenta", function (r) {
-        $("#idselectproducto").html(r);
-        $('#idselectproducto').selectpicker('refresh');
-    });
 }
 
 //Función limpiar
@@ -209,6 +204,7 @@ function marcarImpuesto() {
 function agregarDetalle(idproducto, producto, precio_venta, uMedida, stock) {
     var cantidad = 1;
     var descuento = 0;
+    window.scrollTo(0, document.body.scrollHeight);
 
     if (idproducto != "") {
         var subtotal = cantidad * precio_venta;
