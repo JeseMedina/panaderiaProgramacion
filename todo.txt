@@ -6,10 +6,7 @@ x-venta: no vender si el stock es insuficiente.
 x-Caja: compra no tiene que ir conectado
 x-caja: si venta es con tarjeta no agregar a caja
 x-Compra,Venta,Reparto y Produccion:scrollear la la pantalla del fondo en el modal
--Actualizar precio de producto
--Trigger insertar en detalle_compra con precio de venta a producto???????
-
-
+x-Actualizar precio de producto
 
 -Si se quiere abrir una caja y ya existe una con la misma fecha, la vuelva a abrir
 -Si caja está abierta que no se pueda cerrar la pestaña

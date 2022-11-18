@@ -42,7 +42,7 @@ Class Producto
     //Implementar un método para mostrar los datos de un registro a modificar
     public function mostrar($idproducto)
     {
-        $sql="SELECT * FROM producto WHERE idproducto='$idproducto'";
+        $sql="SELECT * FROM producto,detalle_compra WHERE producto.idproducto = detalle_compra.idproducto";
         return ejecutarConsultaSimpleFila($sql);
     }
  

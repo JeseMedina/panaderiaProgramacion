@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2022 a las 14:20:47
+-- Tiempo de generación: 18-11-2022 a las 20:18:32
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -47,7 +47,9 @@ INSERT INTO `caja` (`idcaja`, `fecha_hora`, `inicio`, `ingreso`, `egreso`, `tota
 (15, '2022-10-23', '600.00', '700.00', '200.00', '500.00', 'Cerrada'),
 (16, '2022-10-24', '1000.00', '1800.00', '2201.50', '-401.50', 'Cerrada'),
 (17, '2022-10-27', '1000.00', '228.00', '0.00', '228.00', 'Cerrada'),
-(18, '2022-11-10', '1000.00', '222.00', '0.00', '222.00', 'Abierta');
+(18, '2022-11-10', '1000.00', '-14778.00', '0.00', '-14778.00', 'Cerrada'),
+(19, '2022-11-11', '1000.00', '155.00', '0.00', '155.00', 'Cerrada'),
+(20, '2022-11-12', '1000.00', '108.00', '0.00', '108.00', 'Abierta');
 
 -- --------------------------------------------------------
 
@@ -107,7 +109,8 @@ INSERT INTO `compra` (`idcompra`, `idproveedor`, `idusuario`, `tipo_comprobante`
 (20, 26, 1, 'Boleta', '', '78', '2022-10-24 00:00:00', '0.00', '1.50', 'Aceptado'),
 (21, 27, 1, 'Boleta', '', '123', '2022-10-27 00:00:00', '0.00', '2200.00', 'Aceptado'),
 (22, 28, 1, 'Boleta', '', '89654', '2022-10-27 00:00:00', '0.00', '8800.00', 'Anulado'),
-(23, 25, 1, 'N', '', '', '2022-11-10 00:00:00', '0.00', '150000.00', 'Aceptado');
+(23, 25, 1, 'N', '', '', '2022-11-10 00:00:00', '0.00', '150000.00', 'Aceptado'),
+(24, 16, 1, 'A', '', '', '2022-11-18 00:00:00', '0.00', '1000.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -121,22 +124,23 @@ CREATE TABLE `detalle_compra` (
   `idproducto` int(11) NOT NULL,
   `cantidad` decimal(11,2) NOT NULL,
   `precio_compra` decimal(11,2) NOT NULL,
-  `precio_venta` decimal(11,2) NOT NULL
+  `precio_venta` decimal(11,2) NOT NULL,
+  `precio_venta_nuevo` decimal(11,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `detalle_compra`
 --
 
-INSERT INTO `detalle_compra` (`iddetalle_compra`, `idcompra`, `idproducto`, `cantidad`, `precio_compra`, `precio_venta`) VALUES
-(16, 20, 22, '1.50', '1.00', '1.00'),
-(17, 21, 52, '100.00', '10.00', '15.00'),
-(18, 21, 53, '20.00', '60.00', '78.00'),
-(19, 22, 29, '55.00', '0.00', '0.00'),
-(20, 23, 13, '20.00', '1000.00', '1200.00'),
-(21, 23, 16, '10.00', '1000.00', '1200.00'),
-(22, 23, 30, '20.00', '1000.00', '1200.00'),
-(23, 23, 34, '100.00', '1000.00', '1200.00');
+INSERT INTO `detalle_compra` (`iddetalle_compra`, `idcompra`, `idproducto`, `cantidad`, `precio_compra`, `precio_venta`, `precio_venta_nuevo`) VALUES
+(17, 21, 52, '100.00', '10.00', '15.00', NULL),
+(18, 21, 53, '20.00', '60.00', '78.00', NULL),
+(19, 22, 29, '55.00', '0.00', '0.00', NULL),
+(20, 23, 13, '20.00', '1000.00', '1200.00', '500.00'),
+(21, 23, 16, '10.00', '1000.00', '1200.00', NULL),
+(22, 23, 30, '20.00', '1000.00', '1200.00', NULL),
+(23, 23, 34, '100.00', '1000.00', '1200.00', '800.00'),
+(24, 24, 53, '10.00', '100.00', '200.00', '300.00');
 
 --
 -- Disparadores `detalle_compra`
@@ -241,15 +245,21 @@ CREATE TABLE `detalle_venta` (
 --
 
 INSERT INTO `detalle_venta` (`iddetalle_venta`, `idventa`, `idproducto`, `cantidad`, `precio_venta`, `descuento`) VALUES
-(46, 38, 22, '2.00', '800.00', '0.00'),
-(47, 39, 27, '1.50', '400.00', '0.00'),
+(46, 38, 22, '2.00', '0.00', '0.00'),
+(47, 39, 27, '1.50', '0.00', '0.00'),
 (48, 40, 26, '18.00', '0.00', '0.00'),
 (49, 41, 57, '1.00', '0.00', '0.00'),
 (50, 41, 54, '1.00', '0.00', '0.00'),
 (51, 42, 53, '2.00', '78.00', '5.00'),
 (52, 42, 12, '1.00', '80.00', '0.00'),
 (53, 43, 12, '2.00', '80.00', '10.00'),
-(54, 43, 53, '1.00', '78.00', '0.00');
+(54, 43, 53, '1.00', '78.00', '0.00'),
+(55, 44, 53, '1.00', '78.00', '10.00'),
+(56, 45, 53, '1.00', '78.00', '10.00'),
+(57, 46, 52, '1.00', '15.00', '0.00'),
+(58, 47, 52, '1.00', '15.00', '0.00'),
+(59, 48, 53, '1.00', '78.00', '0.00'),
+(60, 49, 53, '1.00', '78.00', '0.00');
 
 --
 -- Disparadores `detalle_venta`
@@ -393,7 +403,7 @@ CREATE TABLE `producto` (
 INSERT INTO `producto` (`idproducto`, `idrubro`, `codigo`, `nombre`, `stock`, `uMedida`, `condicion`) VALUES
 (11, 33, '', 'Pan Comun', '86.00', 'Kilogramo', 1),
 (12, 33, '', 'Pan de leche', '53.50', 'Docena', 1),
-(13, 37, '', 'Levadura', '297.20', 'Unidad', 1),
+(13, 37, '', 'Levadura', '277.20', 'Unidad', 1),
 (14, 33, 'anizado', 'Anizado', '20.00', 'Kilogramo', 1),
 (15, 33, 'prepizza', 'Prepizza', '100.00', 'Unidad', 1),
 (16, 37, '', 'Harina', '67.00', 'Unidad', 1),
@@ -402,19 +412,19 @@ INSERT INTO `producto` (`idproducto`, `idrubro`, `codigo`, `nombre`, `stock`, `u
 (19, 33, 'Pascualina', 'Pascualina', '28.50', 'Unidad', 1),
 (20, 33, 'Salvado', 'Grisines de Salvado', '30.00', 'Unidad', 1),
 (21, 33, 'Tortitas', 'Tortitas Saladas', '30.00', 'Unidad', 1),
-(22, 36, 'Torta', 'Torta de Cumpleaños', '2.50', 'Kilogramo', 1),
+(22, 36, 'Torta', 'Torta de Cumpleaños', '6.50', 'Kilogramo', 1),
 (23, 33, 'Panchos', 'Pan de Panchos', '30.00', 'Docena', 1),
 (24, 33, 'Grisin', 'Grisines Comunes', '30.00', 'Unidad', 1),
 (25, 33, 'Frances', 'Pan Francès', '60.00', 'Kilogramo', 1),
-(26, 36, 'Masas', 'Masas Secas', '18.00', 'Kilogramo', 1),
-(27, 36, 'Pastafrola', 'Pastafrola', '16.00', 'Kilogramo', 1),
+(26, 36, 'Masas', 'Masas Secas', '54.00', 'Kilogramo', 1),
+(27, 36, 'Pastafrola', 'Pastafrola', '20.50', 'Kilogramo', 1),
 (28, 36, 'Manaos3l', 'Gaseosas Manaos 3L', '87.00', 'Unidad', 1),
 (29, 34, 'Cabalgata3l', 'Gaseosa Cabalgata 3L', '45.00', 'Unidad', 1),
 (30, 34, 'Toro3/4', 'Vino Toro 3/4', '48.00', 'Unidad', 1),
 (31, 34, 'Soda2l', 'Soda Tubito 2L', '45.00', 'Unidad', 1),
 (32, 34, 'Soda1l', 'Soda Tubito 1L', '25.00', 'Unidad', 1),
 (33, 34, 'Puré', 'Puré de Tomate Huerta', '60.00', 'Unidad', 1),
-(34, 34, 'Brahama', 'Cerveza Brahama', '160.00', 'Litro', 1),
+(34, 34, 'Brahama', 'Cerveza Brahama', '60.00', 'Litro', 1),
 (35, 34, 'Quilmes', 'Cerveza Quilmes', '60.00', 'Litro', 1),
 (36, 34, 'Brahama Lata', 'Cerveza Brahama Lata', '90.00', 'Unidad', 1),
 (37, 34, 'Quilmes Lata', 'Cerveza Quilmes Lata', '90.00', 'Unidad', 1),
@@ -432,12 +442,12 @@ INSERT INTO `producto` (`idproducto`, `idrubro`, `codigo`, `nombre`, `stock`, `u
 (49, 34, 'Arroz', 'Arroz Amanda 1k', '30.00', 'Unidad', 1),
 (50, 34, 'Magistral', 'Detergente Magistral', '20.00', 'Unidad', 1),
 (51, 34, '', 'Esponja', '30.00', 'Unidad', 1),
-(52, 34, '', 'Caramelos', '500.00', 'Unidad', 1),
-(53, 34, 'Alfajor', 'Alfajores Tatín', '77.00', 'Unidad', 1),
-(54, 34, 'Milka', 'Alfajor Milka', '29.00', 'Unidad', 1),
+(52, 34, '', 'Caramelos', '498.00', 'Unidad', 1),
+(53, 34, 'Alfajor', 'Alfajores Tatín', '73.00', 'Unidad', 1),
+(54, 34, 'Milka', 'Alfajor Milka', '31.00', 'Unidad', 1),
 (55, 34, '', 'Jugo Baggio 1L', '30.00', 'Unidad', 1),
 (56, 34, '', 'Jugo Baggio Chico', '30.00', 'Unidad', 1),
-(57, 34, '', 'Agua Saborizada VIda', '59.00', 'Unidad', 1),
+(57, 34, '', 'Agua Saborizada VIda', '61.00', 'Unidad', 1),
 (58, 34, '', 'Papel Higiénico', '60.00', 'Unidad', 1),
 (59, 33, '', 'Levadura Calsa', '0.00', 'Unidad', 1);
 
@@ -462,7 +472,7 @@ CREATE TABLE `reparto` (
 --
 
 INSERT INTO `reparto` (`idreparto`, `idcliente`, `idusuario`, `idrepartidor`, `fecha_hora`, `total_venta`, `estado`) VALUES
-(27, 21, 1, 22, '2022-10-24 00:00:00', '30.00', 'Iniciado');
+(27, 21, 1, 22, '2022-10-24 00:00:00', '30.00', 'Finalizado');
 
 --
 -- Disparadores `reparto`
@@ -568,11 +578,8 @@ CREATE TABLE `venta` (
   `idventa` int(11) NOT NULL,
   `idcliente` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
-  `tipo_comprobante` varchar(20) NOT NULL,
-  `serie_comprobante` varchar(7) DEFAULT NULL,
-  `num_comprobante` varchar(10) NOT NULL,
+  `tipo_pago` varchar(20) NOT NULL,
   `fecha_hora` datetime NOT NULL,
-  `impuesto` decimal(4,2) NOT NULL,
   `total_venta` decimal(11,2) NOT NULL,
   `estado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -581,13 +588,19 @@ CREATE TABLE `venta` (
 -- Volcado de datos para la tabla `venta`
 --
 
-INSERT INTO `venta` (`idventa`, `idcliente`, `idusuario`, `tipo_comprobante`, `serie_comprobante`, `num_comprobante`, `fecha_hora`, `impuesto`, `total_venta`, `estado`) VALUES
-(38, 21, 1, 'Boleta', '', '999', '2022-10-24 00:00:00', '0.00', '1200.00', 'Aceptado'),
-(39, 21, 1, 'Boleta', '', '7899', '2022-10-24 00:00:00', '0.00', '600.00', 'Anulado'),
-(40, 21, 1, 'Boleta', '', '23756', '2022-10-27 00:00:00', '0.00', '5400.00', 'Anulado'),
-(41, 21, 1, 'Contado', '', '', '2022-11-10 00:00:00', '0.00', '0.00', 'Aceptado'),
-(42, 21, 1, 'Contado', '', '', '2022-11-10 00:00:00', '0.00', '228.00', 'Aceptado'),
-(43, 21, 1, 'Contado', '', '', '2022-11-10 00:00:00', '0.00', '222.00', 'Aceptado');
+INSERT INTO `venta` (`idventa`, `idcliente`, `idusuario`, `tipo_pago`, `fecha_hora`, `total_venta`, `estado`) VALUES
+(38, 21, 1, 'Contado', '2022-10-24 00:00:00', '1200.00', 'Aceptado'),
+(39, 21, 1, 'Contado', '2022-10-24 00:00:00', '600.00', 'Anulado'),
+(40, 21, 1, 'Contado', '2022-10-27 00:00:00', '5400.00', 'Anulado'),
+(41, 21, 1, 'Contado', '2022-11-10 00:00:00', '0.00', 'Aceptado'),
+(42, 21, 1, 'Contado', '2022-11-10 00:00:00', '228.00', 'Aceptado'),
+(43, 21, 1, 'Contado', '2022-11-10 00:00:00', '222.00', 'Aceptado'),
+(44, 14, 1, 'Tarjeta', '2022-11-11 00:00:00', '70.00', 'Aceptado'),
+(45, 14, 1, 'Contado', '2022-11-11 00:00:00', '70.00', 'Aceptado'),
+(46, 17, 1, 'Contado', '2022-11-11 00:00:00', '15.00', 'Aceptado'),
+(47, 21, 1, 'Tarjeta', '2022-11-11 00:00:00', '15.00', 'Aceptado'),
+(48, 14, 1, 'Contado', '2022-11-12 00:00:00', '78.00', 'Aceptado'),
+(49, 14, 1, 'Tarjeta', '2022-11-12 00:00:00', '78.00', 'Aceptado');
 
 --
 -- Disparadores `venta`
@@ -602,7 +615,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `tr_updCajaVenta` AFTER INSERT ON `venta` FOR EACH ROW BEGIN
  UPDATE caja SET ingreso = ingreso + NEW.total_venta,total = total +NEW.total_venta
- WHERE caja.estado = "Abierta";
+ WHERE new.tipo_pago = "Contado" AND caja.estado = "Abierta";
 END
 $$
 DELIMITER ;
@@ -739,7 +752,7 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `caja`
 --
 ALTER TABLE `caja`
-  MODIFY `idcaja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idcaja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `caja_retiro`
@@ -751,13 +764,13 @@ ALTER TABLE `caja_retiro`
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `idcompra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idcompra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
-  MODIFY `iddetalle_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `iddetalle_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_produccion`
@@ -775,7 +788,7 @@ ALTER TABLE `detalle_reparto`
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `permiso`
@@ -829,7 +842,7 @@ ALTER TABLE `usuario_permiso`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- Restricciones para tablas volcadas
