@@ -9,4 +9,3 @@ x-Compra,Venta,Reparto y Produccion:scrollear la la pantalla del fondo en el mod
 x-Actualizar precio de producto
 
 -Si se quiere abrir una caja y ya existe una con la misma fecha, la vuelva a abrir
--Si caja está abierta que no se pueda cerrar la pestaña
