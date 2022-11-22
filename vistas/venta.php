@@ -112,33 +112,6 @@ if ($_SESSION['ventas']==1)
                                     <option value="Tarjeta">Tarjeta</option>
                                 </select>
                             </div>
-                            <!-- <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                                <label>Serie:</label>
-                                <input type="text"
-                                    class="form-control"
-                                    name="serie_comprobante"
-                                    id="serie_comprobante"
-                                    maxlength="7"
-                                    placeholder="Serie">
-                            </div>
-                            <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                                <label>Número:</label>
-                                <input type="text"
-                                    class="form-control"
-                                    name="num_comprobante"
-                                    id="num_comprobante"
-                                    maxlength="10"
-                                    placeholder="Número"
-                                    required="">
-                            </div>
-                            <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                                <label>Impuesto:</label>
-                                <input type="text"
-                                    class="form-control"
-                                    name="impuesto"
-                                    id="impuesto"
-                                    required="">
-                            </div> -->
                             <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <a data-toggle="modal"
                                     href="#myModal">
